@@ -1,0 +1,7 @@
+node_modules
+.next
+yarn.lock
+package-lock.json
+
+# If not ignored it will not pass the W3C validator
+public/nepodporovany-prohlizec.html
