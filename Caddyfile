@@ -1,8 +1,5 @@
-{$DOMAIN:http://michalmatus.space} {
-    redir http://www.{host}{uri}
-}
-
-{$WWW_DOMAIN:http://www.michalmatus.space} {
+:80 {
+    root * /app
     encode zstd gzip
-	reverse_proxy app:3000
+    file_server
 }
