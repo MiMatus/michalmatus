@@ -1,20 +1,16 @@
 # ![Alt text](./public/favicon-16x16.png) Michal Matúš
 
-🧙 My personal website built with dark magic of React & Next.js
-
-## ⚠️ Be Aware
-
-This website is built on top of non-stable beta features of [Next.js v13.2](https://github.com/vercel/next.js/releases/tag/v13.2.0) to test them, enyoy them😉 and give proper feedback to creator of Next.js. To learn more check [beta-docs](https://beta.nextjs.org/docs/getting-started)
+🧙 My personal website built with dark magic of React & Next.js and served by awesome caddy http server
 
 ## 🛠 Installation & Set Up
 
 ### 🐋 Docker:
 
 ```bash
-# Build with the newest "bug-fix" versions of images
-docker compose build --no-cache --pull .
+# Build dev image
+docker build -t devpage-dev -f Dockerfile --target=builder .
 # Run development server
-docker compose up
+docker run -it -v $PWD:/app --rm --name devpage -p 3000:3000 --entrypoint npm devpage-dev run dev
 ```
 
 #### Helpers (makefile)
@@ -27,11 +23,11 @@ make help
 ```
 
 ```
-build-images                   builds all compose images`
+build-dev                      builds dev image
 build-next                     builds next.js app
-build-proxy                    builds caddy proxy
-build                          builds dev docker containers
+build                          builds image with site statically served with caddy
 install                        installs dependencies
+run-dev                        run development server on port 3000
 typecheck                      run npm typecheck
 ```
 
