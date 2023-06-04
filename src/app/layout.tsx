@@ -1,6 +1,6 @@
 import './style.linaria.global';
 
-import { Roboto } from '@next/font/google';
+import { Roboto } from 'next/font/google';
 import { ThemeWrapper } from '@michalspace/components/ThemeWrapper';
 import { Header } from '@michalspace/components/Header';
 import { Footer } from '@michalspace/components/Footer';
