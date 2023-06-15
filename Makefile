@@ -3,21 +3,21 @@
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
-build: ## builds dev docker containers
-	docker compose build --pull app
+build-dev: ## builds dev image
+	docker build -t devpage-dev -f Dockerfile --target=builder .
 
 build-next: ## builds next.js app
-	docker compose run --rm --no-deps --entrypoint npm app run build
+	docker run -it -v $(PWD):/app --rm --name devpage --entrypoint npm devpage-dev run build
 
-build-proxy: ## builds caddy proxy
-	docker compose build --pull proxy
+build: ## builds image with site statically served with caddy
+	docker build -t devpage --name devpage -f Dockerfile .
 
-build-images: ## builds all compose images
-	docker compose build
+run-dev: ## run development server on port 3000
+	docker run -it -v $(PWD):/app --rm --name devpage -p 3000:3000 --entrypoint npm devpage-dev run dev
 
 install: ## installs dependencies
-	docker compose run --rm --no-deps --entrypoint npm app install
+	docker run -it -v $(PWD):/app --rm --name devpage --entrypoint npm devpage-dev install
 
 typecheck: ## run npm typecheck
-	docker compose run --rm --no-deps --entrypoint npm app run typecheck
+	docker run -it -v $(PWD):/app --rm --name devpage --entrypoint npm devpage-dev run typecheck
 
