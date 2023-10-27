@@ -10,7 +10,7 @@ build-next: ## builds next.js app
 	docker run -it -v $(PWD):/app --rm --name devpage --entrypoint npm devpage-dev run build
 
 build: ## builds image with site statically served with caddy
-	docker build -t devpage --name devpage -f Dockerfile .
+	docker build -t devpage -f Dockerfile .
 
 run-dev: ## run development server on port 3000
 	docker run -it -v $(PWD):/app --rm --name devpage -p 3000:3000 --entrypoint npm devpage-dev run dev

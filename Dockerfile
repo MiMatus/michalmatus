@@ -1,4 +1,4 @@
-FROM node:19-alpine as builder
+FROM node:20-alpine as builder
 
 WORKDIR /app
 COPY package.json package-lock.json /app/
@@ -9,7 +9,7 @@ RUN npm install --prefer-offline
 COPY . /app
 RUN npm run build
 
-FROM caddy:2.6-alpine
+FROM caddy:2.7-alpine
 
 COPY Caddyfile /etc/caddy/Caddyfile
 COPY --from=builder /app/out /app
