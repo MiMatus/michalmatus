@@ -5,7 +5,7 @@ import { ThemeWrapper } from '@michalspace/components/ThemeWrapper';
 import { Header } from '@michalspace/components/Header';
 import { Footer } from '@michalspace/components/Footer';
 import { Panel } from '@michalspace/components/Panel';
-import { Metadata } from 'next';
+import { Metadata, Viewport } from 'next';
 
 const roboto = Roboto({
     weight: ['300', '400', '900'],
@@ -31,10 +31,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 export const metadata: Metadata = {
     title: 'Michal Matúš - Developer & Coffee lover',
     description: 'PHP Developer, GO Lover, Typescript enjoyer, Rust Admirer. World by Michal Matúš',
-    viewport: {
-        width: 'device-width',
-        initialScale: 1,
-    },
     icons: {
         icon: [
             {
@@ -54,6 +50,11 @@ export const metadata: Metadata = {
             sizes: '180x180',
         },
     },
-    themeColor: '#6e07f3',
     manifest: '/site.webmanifest',
 };
+
+export const viewport: Viewport = {
+    width: 'device-width',
+    initialScale: 1,
+    themeColor: '#6e07f3',
+}
